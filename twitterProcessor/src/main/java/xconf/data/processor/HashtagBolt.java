@@ -13,7 +13,7 @@ import twitter4j.Status;
 
 import java.util.Map;
 
-public class HashTagBolt implements IRichBolt {
+public class HashtagBolt implements IRichBolt {
     private OutputCollector hashTagCollector;
 
     @Override
