@@ -96,14 +96,6 @@ public class TwitterSpout extends BaseRichSpout {
         }
     }
 
-
-    @Override
-    public Map<String, Object> getComponentConfiguration(){
-        Config ret = new Config();
-        ret.setMaxTaskParallelism(1);
-        return ret;
-    }
-
     @Override
     public void close(){
         _twitterStream.shutdown();

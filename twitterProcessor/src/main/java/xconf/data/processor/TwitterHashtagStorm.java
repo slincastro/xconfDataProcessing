@@ -24,8 +24,8 @@ public class TwitterHashtagStorm {
         builder.setBolt("twitter-hashtag-reader-bolt", new HashtagBolt()).shuffleGrouping("twitter-spout");
 
         LocalCluster cluster = new LocalCluster();
+
         cluster.submitTopology("TwitterHashtagStorm", config, builder.createTopology());
-        Thread.sleep(10000);
-        cluster.shutdown();
+
     }
 }
