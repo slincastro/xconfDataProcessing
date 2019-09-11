@@ -1,0 +1,7 @@
+FROM mongo:latest
+
+RUN mkdir /usr/local/bin/scripts
+COPY ./scripts/createUser.sh /usr/local/bin/scripts/
+
+RUN ["chmod", "+x", "/usr/local/bin/scripts/createUser.sh"] 
+
