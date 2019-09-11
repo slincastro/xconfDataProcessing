@@ -1,6 +1,8 @@
 package xconf.data.processor;
 
 import org.apache.storm.messaging.ConnectionWithStatus;
+import org.apache.storm.mongodb.bolt.MongoInsertBolt;
+import org.apache.storm.mongodb.common.mapper.MongoMapper;
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.IRichBolt;
@@ -28,6 +30,17 @@ public class HashtagBolt implements IRichBolt {
             System.out.println("Hashtag: " + hashtage.getText());
             this.hashTagCollector.emit(new Values(hashtage.getText()));
         }
+
+        String url = "mongodb://storm:stormSecret@127.0.0.1:27017/test";
+        String collectionName = "wordcount";
+
+        MongoMapper mapper = new SimpleMongoMapper()
+                .withFields("tweet");
+
+        MongoInsertBolt insertBolt = new MongoInsertBolt(url, collectionName, mapper);
+
+        if(tuple != null)
+        insertBolt.execute(tuple);
     }
 
     @Override

@@ -10,9 +10,6 @@ import java.util.Arrays;
 public class TwitterHashtagStorm {
     public static void main(String[] args) throws Exception {
 
-        /*MongoRepository repository = new MongoRepository();
-        repository.Save("Data");*/
-
         String consumerKey = args[0];
         String consumerSecret = args[1];
         String accessToken = args[2];
