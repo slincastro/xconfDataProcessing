@@ -3,11 +3,13 @@ package xconf.data.processor;
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
 import org.apache.storm.topology.TopologyBuilder;
+import xconf.data.processor.repository.MongoRepository;
 
 import java.util.Arrays;
 
 public class TwitterHashtagStorm {
     public static void main(String[] args) throws Exception {
+
         String consumerKey = args[0];
         String consumerSecret = args[1];
         String accessToken = args[2];
