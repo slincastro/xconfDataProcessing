@@ -3,6 +3,7 @@ package xconf.data.processor;
 import org.apache.storm.messaging.ConnectionWithStatus;
 import org.apache.storm.mongodb.bolt.MongoInsertBolt;
 import org.apache.storm.mongodb.common.mapper.MongoMapper;
+import org.apache.storm.shade.org.json.simple.JSONObject;
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.IRichBolt;
@@ -29,13 +30,19 @@ public class HashtagBolt implements IRichBolt {
     public void execute(Tuple tuple) {
         Status tweet = (Status) tuple.getValueByField("tweet");
         List<String> hashtags = new ArrayList();
-
+        String user = tweet.getUser().getScreenName();
+        String originalText = tweet.getText();
         for (HashtagEntity hashtage : tweet.getHashtagEntities()) {
+            System.out.println("********************Hashtag: " + hashtage.getText());
             System.out.println("********************Hashtag: " + hashtage.getText());
             hashtags.add(hashtage.getText());
         }
+        JSONObject json = new JSONObject();
+        json.put("user", user);
+        json.put("hashtag", hashtags);
+        json.put("message", originalText);
 
-        this.hashTagCollector.emit(new Values(hashtags));
+        this.hashTagCollector.emit(new Values(json));
     }
 
     @Override
