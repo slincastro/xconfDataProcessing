@@ -27,20 +27,9 @@ public class HashtagBolt implements IRichBolt {
     public void execute(Tuple tuple) {
         Status tweet = (Status) tuple.getValueByField("tweet");
         for (HashtagEntity hashtage : tweet.getHashtagEntities()) {
-            System.out.println("Hashtag: " + hashtage.getText());
+            System.out.println("********************Hashtag: " + hashtage.getText());
             this.hashTagCollector.emit(new Values(hashtage.getText()));
         }
-
-        String url = "mongodb://storm:stormSecret@127.0.0.1:27017/test";
-        String collectionName = "wordcount";
-
-        MongoMapper mapper = new SimpleMongoMapper()
-                .withFields("tweet");
-
-        MongoInsertBolt insertBolt = new MongoInsertBolt(url, collectionName, mapper);
-
-        if(tuple != null)
-        insertBolt.execute(tuple);
     }
 
     @Override
