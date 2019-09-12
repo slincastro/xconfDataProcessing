@@ -26,7 +26,7 @@ public class TwitterHashtagStorm {
         String collectionName = "wordcount";
 
         MongoMapper mapper = new SimpleMongoMapper()
-                .withFields("hashtag");
+                .withFields("hashtags");
 
         MongoInsertBolt insertBolt = new MongoInsertBolt(url, collectionName, mapper);
 
