@@ -22,8 +22,8 @@ public class TwitterHashtagStorm {
         Config config = new Config();
         config.setDebug(true);
 
-        String url = "mongodb://storm:stormSecret@127.0.0.1:27017/test";
-        String collectionName = "wordcount";
+        String url = "mongodb://127.0.0.1:27017/test";
+        String collectionName = "tweets";
 
         MongoMapper mapper = new SimpleMongoMapper()
                 .withFields("hashtags");
