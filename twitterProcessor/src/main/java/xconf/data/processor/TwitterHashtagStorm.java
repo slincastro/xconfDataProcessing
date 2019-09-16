@@ -32,6 +32,7 @@ public class TwitterHashtagStorm {
 
 
         TopologyBuilder builder = new TopologyBuilder();
+
         builder.setSpout("twitter-spout", new TwitterSpout(consumerKey, consumerSecret, accessToken, accessTokenSecret, keywords));
         builder.setBolt("twitter-hashtag-reader-bolt", new HashtagBolt()).shuffleGrouping("twitter-spout");
         builder.setBolt("insert", insertBolt, 1).shuffleGrouping("twitter-hashtag-reader-bolt");

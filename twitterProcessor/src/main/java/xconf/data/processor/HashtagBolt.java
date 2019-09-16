@@ -33,8 +33,8 @@ public class HashtagBolt implements IRichBolt {
         String user = tweet.getUser().getScreenName();
         String originalText = tweet.getText();
         for (HashtagEntity hashtage : tweet.getHashtagEntities()) {
-            System.out.println("********************Hashtag: " + hashtage.getText());
-            System.out.println("********************Hashtag: " + hashtage.getText());
+            System.out.println("******************** Hashtag: " + hashtage.getText());
+            System.out.println("******************** Hashtag: " + hashtage.getText());
             hashtags.add(hashtage.getText());
         }
         JSONObject json = new JSONObject();
